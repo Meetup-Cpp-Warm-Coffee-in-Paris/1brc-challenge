@@ -1,0 +1,21 @@
+FROM ubuntu:23.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y
+RUN apt-get install -y --no-install-recommends\
+                    vim \
+                    git \
+                    gcc-13 \
+                    g++-13 \
+                    build-essential \
+                    libboost-all-dev \
+                    cmake \
+                    unzip \
+                    tar \
+                    ca-certificates \
+                    doxygen \
+                    graphviz \ 
+                    pipx
+                    
+RUN pipx ensurepath && pipx install conan==2.0.13
