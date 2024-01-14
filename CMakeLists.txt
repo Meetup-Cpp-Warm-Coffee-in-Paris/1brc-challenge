@@ -24,6 +24,4 @@ if(BUILD_TESTS)
     enable_testing()
     # add unit tests
     add_subdirectory(test)
-    # add usage example
-    add_subdirectory(example)
 endif()

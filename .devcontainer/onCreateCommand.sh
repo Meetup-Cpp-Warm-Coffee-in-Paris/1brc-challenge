@@ -1,2 +1,2 @@
-conan install conanfile.py --profile:build=conan/profiles/linux-armv8-gcc13-release --profile:host=conan/profiles/linux-armv8-gcc13-release --build=missing --output-folder=build
-conan install conanfile.py --profile:build=conan/profiles/linux-armv8-gcc13-debug --profile:host=conan/profiles/linux-armv8-gcc13-debug --build=missing --output-folder=build
+conan install conanfile.py --profile:build=conan/profiles/linux-x86-gcc13-release --profile:host=conan/profiles/linux-x86-gcc13-release --build=missing --output-folder=build
+conan install conanfile.py --profile:build=conan/profiles/linux-x86-gcc13-debug --profile:host=conan/profiles/linux-x86-gcc13-debug --build=missing --output-folder=build

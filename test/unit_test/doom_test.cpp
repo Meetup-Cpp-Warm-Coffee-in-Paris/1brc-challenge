@@ -1,5 +1,3 @@
-// Copyright 2021 Arnaud Becheler    <abechele@umich.edu>
-
 /***********************************************************************                                                                         *
 * This program is free software; you can redistribute it and/or modify *
 * it under the terms of the GNU General Public License as published by *
@@ -9,7 +7,7 @@
 ***************************************************************************/
 
 #define BOOST_TEST_MODULE project_test
-
+//#include <boost/test/included/unit_test.hpp> // single-header
 #include <boost/test/unit_test.hpp>
 #include <project/project.hpp>
 

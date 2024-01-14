@@ -11,5 +11,4 @@
 ///
 /// @brief 1brc challenge
 ///
-namespace 1brc
-{}
+namespace challenge{}
