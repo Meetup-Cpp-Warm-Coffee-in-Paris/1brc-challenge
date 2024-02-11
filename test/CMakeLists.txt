@@ -4,7 +4,7 @@ set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
 
 message("Compiler Version: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}") 
 
-find_package( Boost COMPONENTS unit_test_framework REQUIRED )
+find_package( Boost COMPONENTS REQUIRED unit_test_framework )
 
 ### UNIT TEST
 file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} unit_test/*.cpp)
@@ -18,7 +18,7 @@ foreach(testSrc ${TEST_SRCS})
   # Ignore warnings about subtle ABI change
   target_compile_options(${testName} PUBLIC "-Wno-psabi")
   # Link to dependencies
-  target_link_libraries(${testName} project::project Boost::unit_test_framework)
+  target_link_libraries(${testName} project::project boost::boost)
   # Specifies include directories to use when compiling the target
   target_include_directories(
     ${testName} PRIVATE

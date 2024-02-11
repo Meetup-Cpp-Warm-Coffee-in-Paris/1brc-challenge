@@ -1,43 +1,43 @@
-FROM --platform=linux/x86_64 ubuntu:23.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y
-RUN apt-get install -y --no-install-recommends\
+RUN apt-get install -y --no-install-recommends \
                     vim \
                     git \
-                    gcc-13 \
-                    g++-13 \
+                    gcc-12 \
+                    g++-12 \
                     build-essential \
                     cmake \
                     unzip \
                     tar \
                     ca-certificates \
-                    wget \
-                    pipx
-
-
-# Install C++ dep manager conan
-RUN pipx ensurepath && pipx install conan==2.0.13
-
-# Not available yet
-#RUN apt-get install -y --no-install-recommends openjdk-21
+                    python3-pip
+                    
+RUN rm -rf /var/lib/apt/list/*
 
 # Install Java-21 
+# Not available yet
+# RUN apt-get install -y --no-install-recommends openjdk-21
+WORKDIR /home
 ADD https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz .
-RUN tar -xvf jdk-21_linux-x64_bin.tar.gz \
-    && cd jdk-21.0.1 \
-    && mkdir -p /usr/local/jdk-21 \
-    && mv * /usr/local/jdk-21 \
-    && export JAVA_HOME=/usr/local/jdk-21 \
-    && export PATH=$JAVA_HOME/bin:$PATH
-
+RUN tar -xvf jdk-21_linux-x64_bin.tar.gz
+RUN mkdir -p /usr/local/jdk-21
+WORKDIR /home/jdk-21.0.2
+RUN mv * /usr/local/jdk-21
+RUN export JAVA_HOME=/usr/local/jdk-21
+RUN export PATH=$JAVA_HOME/bin:$PATH
 RUN /bin/bash -c "source ~/.bashrc"
-
 RUN echo 'export JAVA_HOME=/usr/local/jdk-21' >> ~/.bashrc \
-    && echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
+     && echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
 
 RUN /bin/bash -c "source ~/.bashrc"
 
-#RUN java --version  && echo $JAVA_HOME
+RUN java --version  && echo $JAVA_HOME
 
+# # Install C++ dep manager
+# WORKDIR /home
+# RUN git clone https://github.com/Microsoft/vcpkg.git
+# WORKDIR /home/vcpkg 
+# RUN /bootstrap-vcpkg.sh

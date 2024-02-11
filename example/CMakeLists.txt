@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.12)
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
 
 # Include Boost as an imported target: 1.73 important for compilation with gcc 10 and C++20
-find_package( Boost COMPONENTS unit_test_framework REQUIRED )
+find_package( Boost COMPONENTS REQUIRED unit_test_framework )
 
 # Copy the data required by I/O examples
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR}/example)
@@ -24,7 +24,7 @@ foreach(testSrc ${SRCS})
   # Ignore warnings about subtle ABI change
   target_compile_options(${testName} PUBLIC "-Wno-psabi")
   # Link to dependencies
-  target_link_libraries(${testName} project::project)
+  target_link_libraries(${testName} project::project boost::boost)
   # Specifies include directories to use when compiling a given target
   target_include_directories(
     ${testName} PRIVATE
