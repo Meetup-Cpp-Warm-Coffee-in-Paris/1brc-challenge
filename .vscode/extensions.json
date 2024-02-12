@@ -3,7 +3,6 @@
         "ms-vscode-remote.remote-containers",
         "ms-vscode.cpptools-themes",
         "ms-vscode.cpptools",
-        "ms-vscode.cpptools-extension-pack",
-        "twxs.cmake"
+        "ms-vscode.cpptools-extension-pack"
     ]
 }

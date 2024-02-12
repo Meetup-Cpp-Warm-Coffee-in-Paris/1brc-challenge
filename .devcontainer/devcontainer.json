@@ -19,7 +19,18 @@
 		"vscode": {
 			"settings": {},
 			"extensions": [
-				"streetsidesoftware.code-spell-checker"
+				"streetsidesoftware.code-spell-checker",
+				"twxs.cmake",
+				// Bundle the 4 next extensions
+				// "ms-vscode.cpptools-extension-pack",        
+				// 1. Semantic colorization
+				"ms-vscode.cpptools-themes",
+				// 2. Intellisense
+				"ms-vscode.cpptools",
+				// 3. CMake syntax
+				"twxs.cmake",
+				// 4. Cmake workflow
+				"ms-vscode.cmake-tool",
 			]
 		}
 	}

@@ -24,7 +24,7 @@ foreach(testSrc ${SRCS})
   # Ignore warnings about subtle ABI change
   target_compile_options(${testName} PUBLIC "-Wno-psabi")
   # Link to dependencies
-  target_link_libraries(${testName} project::project boost::boost)
+  target_link_libraries(${testName} project::project ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
   # Specifies include directories to use when compiling a given target
   target_include_directories(
     ${testName} PRIVATE
