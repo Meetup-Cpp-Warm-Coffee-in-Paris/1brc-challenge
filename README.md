@@ -29,3 +29,13 @@ The main purpose of this repo is to share code and knowledge: the opportunity is
 5. `Dev Container: Open Folder In Container`
 6. Once the image is built, use the command palette `CMD + Maj + P` > `Run Task` > `Run Unit Test (Debug)`
 7. If this does not work (it never does), please let us know ahaha !
+
+## To generate the full dataset
+
+```
+git clone https://github.com/gunnarmorling/1brc.git gunnarmorling-1brc
+cd gunnarmorling-1brc
+./mvnw clean verify
+./create_measurements.sh 1000000000
+./calculate_average_baseline.sh
+```
