@@ -10,7 +10,6 @@
 #include <stdexcept>
 #include <queue>
 #include <future>
-#include <atomic>
 
 namespace fs = std::filesystem;
 const std::string filename = "data/one_million_rows.txt";
@@ -52,6 +51,7 @@ public:
     }
 };
 
+// Specialization of ThreadSafeQueue for pairs
 template<typename T1, typename T2>
 class ThreadSafeQueue<std::pair<T1,T2>> {
     std::mutex mutex;
@@ -116,8 +116,11 @@ std::ostream& operator<<(std::ostream& os, const CityStruct& cs) {
     return os;
 }
 
-ThreadSafeQueue<std::string> chunksQueue;
-ThreadSafeQueue<std::pair<std::string, double>> parsedQueue;
+// Queue to store read lines
+ThreadSafeQueue<std::string> chunksQueue; 
+
+// Queue to stone parsed lines <city, temperature>
+ThreadSafeQueue<std::pair<std::string, double>> parsedQueue; 
 
 
 void producerThread(const fs::path& filename) {
@@ -132,7 +135,6 @@ void producerThread(const fs::path& filename) {
 
     // Signal end of file by pushing an empty string
     chunksQueue.push("");
-    file.close();
 }
 
 void parse() {
@@ -189,7 +191,7 @@ int main() {
     std::unordered_map<std::string, CityStruct> stations = waitEndOfStore.get();
     storeThread.join();
 
-    std::map< std::string, CityStruct> sortedStations{ stations.begin(), stations.end() };
+    std::map<std::string, CityStruct> sortedStations{ stations.begin(), stations.end() };
 
     std::cout << "{";
     for (auto it = sortedStations.begin(); it != sortedStations.end();) {
